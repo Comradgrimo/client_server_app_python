@@ -61,49 +61,38 @@ def write_to_csv():
 
 write_to_csv()
 
+# Задание на закрепление знаний по модулю json. Есть файл orders в формате JSON с информацией о заказах. Написать
+# скрипт, автоматизирующий его заполнение данными
 
+def write_order_to_json(item, quantity, price, buyer,date):
+    dict_to_json = {
+        'item': item,
+        "quantity": quantity,
+        "price": price,
+        "buyer": buyer,
+        "date": date
+    }
+    with open('orders.json', 'w') as f_n:
+        json.dump(dict_to_json, f_n, sort_keys=True, indent=2, ensure_ascii=False)
 
+    with open('orders.json') as f_n:
+        print(f_n.read())
 
+now = datetime.datetime.today().strftime("%m/%d/%Y")
+write_order_to_json('Булка',10,30,'Иванов',now)
 
+# Задание на закрепление знаний по модулю yaml. Написать скрипт, автоматизирующий сохранение данных в файле YAML-формата
+def write_to_yaml():
+    my_dist = {
+        1: ['test'],
+        2: 10,
+        3: {'©': ['test','test'],'€':2,'®':3}
+    }
+    # print(my_dist)
+    with open('file.yaml', 'w') as f_n:
+        yaml.dump(my_dist, f_n, default_flow_style=False, allow_unicode = True)
 
+    with open('file.yaml') as f_n:
+        print(f_n.read())
 
-
-
-
-
-#
-# # Задание на закрепление знаний по модулю json. Есть файл orders в формате JSON с информацией о заказах. Написать
-# # скрипт, автоматизирующий его заполнение данными
-#
-# def write_order_to_json(item, quantity, price, buyer,date):
-#     dict_to_json = {
-#         'item': item,
-#         "quantity": quantity,
-#         "price": price,
-#         "buyer": buyer,
-#         "date": date
-#     }
-#     with open('orders.json', 'w') as f_n:
-#         json.dump(dict_to_json, f_n, sort_keys=True, indent=2, ensure_ascii=False)
-#
-#     with open('orders.json') as f_n:
-#         print(f_n.read())
-#
-# now = datetime.datetime.today().strftime("%m/%d/%Y")
-# write_order_to_json('Булка',10,30,'Иванов',now)
-#
-# # Задание на закрепление знаний по модулю yaml. Написать скрипт, автоматизирующий сохранение данных в файле YAML-формата
-# def write_to_yaml():
-#     my_dist = {
-#         1: ['test'],
-#         2: 10,
-#         3: {'©': ['test','test'],'€':2,'®':3}
-#     }
-#     # print(my_dist)
-#     with open('file.yaml', 'w') as f_n:
-#         yaml.dump(my_dist, f_n, default_flow_style=False, allow_unicode = True)
-#
-#     with open('file.yaml') as f_n:
-#         print(f_n.read())
-#
-# write_to_yaml()
+write_to_yaml()
