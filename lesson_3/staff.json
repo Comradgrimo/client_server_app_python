@@ -1,9 +1,0 @@
-{
-        "action": "presence",
-        "time": "time",
-        "type": "status",
-        "user": {
-                "account_name":  "comrad",
-                "status":      "Yep, I am here!"
-        }
-}

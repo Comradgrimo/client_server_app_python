@@ -1,18 +1,15 @@
 # Программа сервера для получения приветствия от клиента и отправки ответа
 from sys import argv
 from socket import *
-
+from response import ServerResponse
 import json
 
-
+my_resp = ServerResponse()
 if len(argv) != 3:
     raise ValueError('Please provide ip or port (server.py localhost 7777)')
 
 
-objs = {
-    'response': 200,
-    'alert': 'OK'
-}
+objs = my_resp.response(200,'ok')
 
 s = socket(AF_INET, SOCK_STREAM)  # Создает сокет TCP
 ip, port = str(argv[1]), int(argv[2])
