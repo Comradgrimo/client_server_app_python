@@ -1,0 +1,30 @@
+[{
+ "action": "authenticate",
+ "time": "time",
+        "user": {
+                "account_name": "account_name",
+                "password":     "account_pass"
+        }
+},
+
+{
+    "name": "response",
+    "response": "code",
+    "alert":""
+},
+
+  {
+    "action": "quit"
+},
+
+{
+        "action": "presence",
+        "time": "time",
+        "type": "status",
+        "user": {
+                "account_name":  "account_name",
+                "status":      "Yep, I am here!"
+        }
+}
+
+  ]
