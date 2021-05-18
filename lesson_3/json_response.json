@@ -25,6 +25,14 @@
                 "account_name":  "account_name",
                 "status":      "Yep, I am here!"
         }
+},
+  {
+    "action": "msg",
+    "time": "time",
+    "to": "account_name",
+    "from": "account_name",
+    "encoding": "utf-8",
+    "message": "message"
 }
 
   ]

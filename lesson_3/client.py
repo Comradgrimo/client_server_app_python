@@ -55,8 +55,8 @@ my_resp = ServerResponse()
 if len(argv) != 3:
     raise ValueError('Please provide ip and port (client.py localhost 7777)')
 
-# ip, port = str(argv[1]), int(argv[2])
-ip, port = 'localhost', 7778
+ip, port = str(argv[1]), int(argv[2])
+# ip, port = 'localhost', 7778
 
 s = socket(AF_INET, SOCK_STREAM)  # Создать сокет TCP
 s.connect((ip, port))
