@@ -4,7 +4,7 @@ from sys import argv, exit
 from socket import *
 import json
 from datetime import datetime
-from response import ServerResponse
+from lesson_3.response import ServerResponse
 # from time import sleep
 # from mThreading import StoppableThread
 
@@ -19,7 +19,7 @@ def current_time() -> str:
 
 while True: #ДОДЕЛАТЬ ОБРАБОТКУ ВВОДА
     # login = input('Введите новый логин: ')
-    login = 'grimo1'
+    login = 'Comrad'
     # pswrd = input('Введите новый пароль: ')
     pwd = '123'
     break
@@ -52,11 +52,11 @@ aut = authorized(login, pwd, foo)
 
 my_resp = ServerResponse()
 
-if len(argv) != 3:
-    raise ValueError('Please provide ip and port (client.py localhost 7777)')
+# if len(argv) != 3:
+#     raise ValueError('Please provide ip and port (client.py localhost 7777)')
 
-ip, port = str(argv[1]), int(argv[2])
-# ip, port = 'localhost', 7778
+# ip, port = str(argv[1]), int(argv[2])
+ip, port = 'localhost', 7777
 
 s = socket(AF_INET, SOCK_STREAM)  # Создать сокет TCP
 s.connect((ip, port))
