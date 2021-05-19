@@ -1,13 +1,11 @@
 # Программа клиента для отправки приветствия серверу и получения ответа
-import threading
-from sys import argv, exit
 from socket import *
 import json
 from datetime import datetime
 from lesson_3.response import ServerResponse
-# from time import sleep
-# from mThreading import StoppableThread
-
+import logging
+import lesson_5.client_log_config
+logger = logging.getLogger('app1.main')
 
 def send_json(arg: dict) -> bytes:
     return json.dumps(arg).encode('utf-8')
@@ -70,16 +68,18 @@ data = s.recv(1024).decode('utf-8')
 foo = json.loads(data)
 
 if foo['response'] == 200:                                                  #ДОДЕЛАТЬ ВОЗМОЖНЫЕ ОШИБКИ
-    print(f'Добро пожаловать {login}\nСообщение от сервера: {data} ')
+    print(f'Добро пожаловать {login}')
+    logger.info(data)
 
 # _____________________________________________________________
 while True:
     msg = str(input('Введите сообщение: '))
     if msg == '_exit':
-        send_json(my_resp.exit())
-        s.close()
+        s.send(send_json(my_resp.exit(login)))
         print('exit')
+        logger.info('Выход')
         break
+
 
     msg_server = my_resp.msg(current_time(), 'all', aut, msg)
     # print(msg_server, type(msg_server))
@@ -89,7 +89,7 @@ while True:
 
     data = s.recv(1024)
     if data:
-        print(f'Сообщение от сервера: {data.decode("utf-8")} ')  # В ЛОГИ
-
+        logger.info(data.decode("utf-8"))
+s.close()
 
 # ________________________________________________________________________

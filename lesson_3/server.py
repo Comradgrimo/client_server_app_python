@@ -3,8 +3,9 @@ from sys import argv
 from socket import *
 from response import ServerResponse
 import json
-import threading
-from time import sleep
+import logging
+import lesson_5.server_log_config
+logger = logging.getLogger('app.main')
 
 
 def server_program():
@@ -23,20 +24,25 @@ def server_program():
                                           # 5 запросов.
 
         client, addr = s.accept()
-        print(f'Подключился {addr}')
         # ПРИНИМАЕМ
         if addr:
             while True:
                 data = client.recv(1024)
                 if data:
                     jdata = json.loads(data.decode('utf-8'))
+
+                    try:
+                        if jdata.get('user').get('account_name'):
+                            logger.info(f"Подключился {addr} {jdata.get('user').get('account_name')}")
+                    except AttributeError:
+                        pass
                     if jdata.get('action') != 'quit':
-                        print(jdata)
+                        logger.info(jdata)
                         msg = json.dumps(objs)
                         client.send(msg.encode('utf-8'))
-                else:
-                    print('Клиент отключился')
-                    break
+                    else:
+                        logger.info(f'Клиент {jdata.get("client_name")} отключился')
+                        break
 
 
 

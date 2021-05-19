@@ -35,13 +35,14 @@ class ServerResponse(object):
                 res['alert'] = msg
                 return res
 
-    def exit(self) :
+    def exit(self,login) :
         """
         exit
         """
         for i in objs:
             if i.get('action') == 'quit':
                 res = i
+                res['client_name'] = login
                 return res
 
     def presence(self, login, time):
